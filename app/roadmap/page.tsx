@@ -9,57 +9,56 @@ export const metadata: Metadata = pageMetadata(
   "/roadmap"
 );
 
-const MILESTONES = [
+const TIMELINE = [
   {
-    date: "2024",
-    title: "Founded in Bali, core product designed",
-    detail: "Zali2Bali is founded to serve Bali's villa management market. The core product architecture — WhatsApp API, GoHighLevel master snapshot, AI qualification layer — is designed around one thesis: guest response speed is the single biggest lever on villa revenue.",
-    status: "Done",
+    year: "2026 — Q1",
+    status: "completed",
+    event: "Founded in Bali",
+    detail: "Zali2Bali is founded to serve Bali's villa management market — identified as the clearest, most urgent automation opportunity in the island's tourism economy.",
   },
   {
-    date: "2025 Q1",
-    title: "Founding Partner program launched",
-    detail: "The first five clients are onboarded under the Founding Partner program — 30% off setup in exchange for case study access, testimonials, and referral introductions.",
-    status: "Done",
+    year: "2026 — Q2/Q3",
+    status: "completed",
+    event: "Product & systems built",
+    detail: "Core automation architecture designed and tested. GoHighLevel master snapshot built. WhatsApp BSP integration validated. Website launched.",
   },
   {
-    date: "2025 Q3",
-    title: "First case studies published",
-    detail: "Results from the initial Founding Partner cohort are documented and published — response time, conversion, and booking-recovery numbers drawn from real client data.",
-    status: "In progress",
+    year: "2026 — NOW",
+    status: "current",
+    event: "Founding Partner program open",
+    detail: "Onboarding our first five Founding Partners — villa management companies in Bali who get 30% off setup in exchange for case study access and one referral.",
   },
   {
-    date: "2026 Q1",
-    title: "Expansion to tour operators and restaurants",
-    detail: "The proven villa-management playbook extends to tour and activity operators, and to restaurants — industries sharing the same WhatsApp-driven inquiry pattern.",
-    status: "Planned",
+    year: "2026 — Q4",
+    status: "upcoming",
+    event: "First case studies published",
+    detail: "Before/after data from Founding Partners published: response time improvement, inquiry-to-booking conversion lift, and monthly recovered revenue.",
   },
   {
-    date: "2026 Q3",
-    title: "GoHighLevel SaaS productized tier",
-    detail: "A self-serve, productized tier launches on top of the GoHighLevel master-snapshot architecture — lowering the entry point for smaller operators who don't need a fully bespoke build.",
-    status: "Planned",
+    year: "2027 — Q1",
+    status: "upcoming",
+    event: "Vertical expansion",
+    detail: "Proven playbook extends to tour operators and activity companies — same WhatsApp-driven inquiry pattern, same automation approach.",
   },
   {
-    date: "2027",
-    title: "Regional expansion — Lombok, Yogyakarta",
-    detail: "The delivery model expands beyond Bali into other Indonesian tourism hubs with the same underlying gap: high tourism volume, low automation maturity.",
-    status: "Planned",
+    year: "2027 — Q3",
+    status: "upcoming",
+    event: "Restaurants & hotels",
+    detail: "Expansion into F&B and boutique hotels across Bali. CRM and WhatsApp automation adapted for reservation and table booking flows.",
   },
   {
-    date: "Future",
-    title: "Operating system for Southeast Asia tourism",
-    detail: "The long-term vision: the default infrastructure layer that hospitality and tourism businesses across Southeast Asia run their guest communication and CRM on.",
-    status: "Vision",
+    year: "2028",
+    status: "future",
+    event: "Product layer & regional expansion",
+    detail: "Productized SaaS tier for smaller operators. Geographic expansion to Lombok, Yogyakarta, and other Indonesian tourism hubs.",
+  },
+  {
+    year: "Future",
+    status: "future",
+    event: "Operating system for SEA tourism",
+    detail: "The default infrastructure layer for tourism and hospitality businesses across Southeast Asia.",
   },
 ];
-
-const STATUS_STYLE: Record<string, string> = {
-  Done: "badge-live",
-  "In progress": "badge-teal",
-  Planned: "badge-neutral",
-  Vision: "badge-neutral",
-};
 
 export default function RoadmapPage() {
   return (
@@ -85,19 +84,25 @@ export default function RoadmapPage() {
       <section className="section-pad bg-white">
         <div className="container-content max-w-3xl mx-auto">
           <div className="relative pl-10 border-l-2 border-border flex flex-col gap-12 stagger-children">
-            {MILESTONES.map((m) => (
-              <div key={m.date} className="relative">
-                <div className="absolute -left-[2.9rem] w-6 h-6 rounded-full bg-white border-2 border-teal-deep flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-teal-deep" />
+            {TIMELINE.map((m) => (
+              <div key={m.year} className="relative">
+                <div
+                  className={`absolute -left-[2.9rem] w-6 h-6 rounded-full bg-white flex items-center justify-center ${
+                    m.status === "future" ? "border-2 border-border" : "border-2 border-teal-deep"
+                  }`}
+                >
+                  {m.status === "completed" && (
+                    <div className="w-2 h-2 rounded-full bg-teal-deep" />
+                  )}
+                  {m.status === "current" && <span className="live-dot" />}
                 </div>
                 <div className="flex flex-wrap items-center gap-3 mb-2">
-                  <div className="eyebrow">{m.date}</div>
-                  <span className={`badge text-xs ${STATUS_STYLE[m.status]}`}>
-                    {m.status === "Done" && <span className="live-dot" style={{ width: 5, height: 5 }} />}
-                    {m.status}
-                  </span>
+                  <div className="eyebrow">{m.year}</div>
+                  {m.status === "current" && (
+                    <span className="badge badge-teal ml-2">Now</span>
+                  )}
                 </div>
-                <h2 className="text-display-sm text-ink mb-2">{m.title}</h2>
+                <h2 className="text-display-sm text-ink mb-2">{m.event}</h2>
                 <p className="text-body-md text-subtle leading-relaxed">{m.detail}</p>
               </div>
             ))}
