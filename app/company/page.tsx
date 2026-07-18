@@ -43,10 +43,37 @@ const VALUES = [
 ];
 
 const TIMELINE = [
-  { year: "2024", event: "Founded in Bali", detail: "Zali2Bali is founded to serve Bali's villa management market — identified as the clearest, most urgent automation opportunity in the island's tourism economy." },
-  { year: "2025", event: "Founding Partner program launched", detail: "First five clients onboarded under the Founding Partner program, generating the initial case studies and referral network that validate the playbook." },
-  { year: "2026", event: "Vertical expansion", detail: "Proven playbook extends to tour operators, restaurants, and hotels — industries sharing the same WhatsApp-driven inquiry pattern as villa management." },
-  { year: "2027", event: "Product layer", detail: "Productized tier introduced for smaller operators; exploration of Lombok, Yogyakarta, and other Indonesian tourism hubs." },
+  {
+    year: "2026 — Q1",
+    event: "Founded in Bali",
+    detail: "Zali2Bali is founded to serve Bali's villa management market — identified as the clearest, most urgent automation opportunity in the island's tourism economy.",
+  },
+  {
+    year: "2026 — Q2/Q3",
+    event: "Product & systems built",
+    detail: "Core automation architecture designed and tested. GoHighLevel master snapshot built. WhatsApp BSP integration validated. Website launched.",
+  },
+  {
+    year: "2026 — NOW",
+    event: "Founding Partner program open",
+    detail: "Onboarding our first five Founding Partners — 30% off setup in exchange for case study access and one referral. Spots are limited.",
+    current: true,
+  },
+  {
+    year: "2026 — Q4",
+    event: "First case studies published",
+    detail: "Before/after data from Founding Partners published: response time improvement and monthly recovered revenue.",
+  },
+  {
+    year: "2027",
+    event: "Vertical expansion",
+    detail: "Proven playbook extends to tour operators, restaurants, and hotels across Bali.",
+  },
+  {
+    year: "2028+",
+    event: "Operating system for SEA tourism",
+    detail: "The default infrastructure layer for tourism and hospitality businesses across Southeast Asia.",
+  },
 ];
 
 export default function CompanyPage() {
@@ -197,9 +224,16 @@ export default function CompanyPage() {
             {TIMELINE.map((item) => (
               <div key={item.year} className="relative">
                 <div className="absolute -left-[2.375rem] w-5 h-5 rounded-full bg-white border-2 border-teal-deep flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-teal-deep" />
+                  {item.current ? (
+                    <span className="live-dot" />
+                  ) : (
+                    <div className="w-2 h-2 rounded-full bg-teal-deep" />
+                  )}
                 </div>
-                <div className="eyebrow mb-2">{item.year}</div>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="eyebrow">{item.year}</div>
+                  {item.current && <span className="badge badge-teal">Now</span>}
+                </div>
                 <h3 className="font-semibold text-ink mb-1">{item.event}</h3>
                 <p className="text-sm text-subtle leading-relaxed">{item.detail}</p>
               </div>
